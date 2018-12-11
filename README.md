@@ -1,27 +1,81 @@
 # AngularElectronDesktopApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.0-rc.1.
+### How to build a Desktop Application with Electron and Angular
 
-## Development server
+### Electron
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> If you can build a website, you can build a desktop app. Electron is a framework for creating native applications with >web technologies like JavaScript, HTML, and CSS. It takes care of the hard parts so you can focus on the core of your >application.
 
-## Code scaffolding
+Refer this link: https://electronjs.org/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### How to install electron in angular cli
 
-## Build
+Create main.js file in the root folder and paste the below code
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+const {app, BrowserWindow} = require('electron')
+let win = null;
+function createWindow() {
+  // Initialize the window to our specified dimensions
+  win = new BrowserWindow({width: 1000, height: 600});
+  // Specify entry point
+  win.loadURL('http://localhost:4200');
+  // Show dev tools
+  // Remove this line before distributing
+  win.webContents.openDevTools()
+  // Remove window once app is closed
+  win.on('closed', function () {
+    win = null;
+  });
+}
 
-## Running unit tests
+app.on('ready', function () {
+  createWindow();
+});
+app.on('activate', () => {
+  if (win === null) {
+    createWindow()
+  }
+})
+app.on('window-all-closed', function () {
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
 
-## Running end-to-end tests
+Add the below line in package.json file
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+"main": "main.js"
+```
 
-## Further help
+### Install Electron in angular cli
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+npm install -g electron
+
+```
+
+We are ready to run the application now.
+
+First, start the angular server using
+
+```
+npm start
+
+```
+
+In a separate window, we launch electron by running this command
+
+```
+electron .
+
+```
+
+### Screenshot
+
+![angular-electron-desktop-app.png](angular-electron-desktop-app.png)
+
+### Happy coding
