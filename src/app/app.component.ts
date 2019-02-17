@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-electron-desktop-app';
+
+  Add(a: number, b: number): number {
+    return a + b;
+  }
+  Sub(a: number, b: number): number {
+    return a - b;
+  }
+  Multi(a: number, b: number): number {
+    return a * b;
+  }
+  Divide(a: number, b: number): number {
+    return a / b;
+  }
 }

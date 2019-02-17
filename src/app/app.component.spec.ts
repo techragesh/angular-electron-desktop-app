@@ -5,12 +5,8 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent]
     }).compileComponents();
   }));
 
@@ -30,6 +26,37 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular-electron-desktop-app!');
+    expect(compiled.querySelector('h1').textContent).toContain(
+      'Welcome to angular-electron-desktop-app!'
+    );
+  });
+
+  it('should call Add Method', () => {
+    let a: number = 15;
+    let b: number = 10;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.Add(a, b)).toEqual(25);
+  });
+  it('should call Sub Method', () => {
+    let a: number = 15;
+    let b: number = 10;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.Sub(a, b)).toEqual(5);
+  });
+  it('should call Muti Method', () => {
+    let a: number = 15;
+    let b: number = 10;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.Multi(a, b)).toEqual(150);
+  });
+  it('should call Divide Method', () => {
+    let a: number = 50;
+    let b: number = 10;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.Divide(a, b)).toEqual(5);
   });
 });
